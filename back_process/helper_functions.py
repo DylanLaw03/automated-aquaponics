@@ -1,6 +1,9 @@
+from datetime import datetime
 import os
 import glob
 import time
+import json
+import mysql.connector
  
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -26,3 +29,33 @@ def read_temp():
         temp_c = float(temp_string) / 1000.0
         temp_f = temp_c * 9.0 / 5.0 + 32.0
         return temp_f
+
+
+def record_temperature_data():
+    #load credentials and connect to the database
+    credentials = json.load(open("credentials.json", "r"))
+
+    database = mysql.connector.connect(
+        host=credentials["host"],
+        user=credentials["user"],
+        passwd=credentials["password"],
+        database=credentials["database"]
+    )
+
+    #insert command
+    insert_command = "INSERT INTO `temperature_data` (`timestamp`, `temperature`) VALUES (%s, %s);"
+
+    #create set of data
+    time = datetime.now()
+    data = (time, read_temp())
+
+    #cursor object to execute database commands
+    cursor = database.cursor()
+    
+    #send data to database
+    cursor.execute(insert_command,data)
+    database.commit()
+
+    #close connection
+    cursor.close()
+    database.close()
