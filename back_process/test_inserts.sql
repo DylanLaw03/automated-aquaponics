@@ -1,0 +1,19 @@
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:23:42.466009", 71);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:24:42.466009", 72);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:25:42.466009", 73);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:26:42.466009", 70);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:27:42.466009", 68);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:28:42.466009", 70);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:29:42.466009", 78);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:30:42.466009", 69);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:31:42.466009", 68);
+INSERT INTO temperature_data (timestamp, temperature) VALUES ("2019-03-07 13:32:42.466009", 68.5);
+
+INSERT INTO action_log (timestamp, action) VALUES ("2019-03-07 13:32:42.466009", "temperature-read");
+INSERT INTO action_log (timestamp, action) VALUES ("2019-03-07 13:33:42.466009", "fish-fed");
+INSERT INTO action_log (timestamp, action) VALUES ("2019-03-07 13:34:42.466009", "temperature-read");
+INSERT INTO action_log (timestamp, action) VALUES ("2019-03-07 13:35:49.466009", "pump-on");
+INSERT INTO action_log (timestamp, action) VALUES ("2019-03-07 13:36:42.466009", "temperature-read");
+INSERT INTO action_log (timestamp, action) VALUES ("2019-03-07 13:37:42.466009", "temperature-read");
+INSERT INTO action_log (timestamp, action) VALUES ("2019-03-07 13:38:42.466009", "temperature-read");
+INSERT INTO action_log (timestamp, action) VALUES ("2019-03-07 13:39:42.466009", "pump-off");
