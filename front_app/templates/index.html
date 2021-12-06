@@ -1,22 +1,24 @@
-{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+</head>
 
-{% block content %}
-<h1>Hello</h1>
-<div class="alert alert-success" role="alert">
-  <a href="#" class="alert-link">One</a>
-</div>
-<div class="alert alert-info" role="alert">
-  <a href="#" class="alert-link">Two</a>
-</div>
-<div class="alert alert-warning" role="alert">
-  <a href="#" class="alert-link">Three</a>
-</div>
-<div class="alert alert-danger" role="alert">
-  <a href="#" class="alert-link">Four</a>
-</div>
-{% endblock %}
 
-{% block scripts %}
-{{ super() }}
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-{% endblock %}
+
+
+<body style="height: 100vh;">
+
+    <!--TODO nav bar-->
+    <div class ="navBar">
+        <a href="/history">History</a>
+    </div>
+
+
+    <main style="height: 100vh;">
+        <iframe width="100%" height="100%" src="https://iot.app.initialstate.com/embed/#/tiles/bkt_4x86t8kwtuzb5a"></iframe>
+    </main>
+    <a href="/history">History</a>
+</body>
+</html>
