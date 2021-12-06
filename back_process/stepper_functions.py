@@ -27,6 +27,8 @@ step_sequence = [[1,0,0,1],
 
 def rotate_motor(num_rotations):
     step_count = 4096 * num_rotations #4096 is the number of steps for a full rotation
+
+
     #set up pins
     GPIO.setmode(GPIO.BCM) 
     GPIO.setup(in1, GPIO.OUT)
@@ -44,8 +46,11 @@ def rotate_motor(num_rotations):
     step_counter = 0 ;
 
     for i in range(step_count):
+
         for pin in range(0, len(motor_pins)):
+
             GPIO.output(motor_pins[pin], step_sequence[step_counter][pin])
+
         if direction == 'clockwise':
             step_counter = (step_counter - 1) % 8
         elif direction == 'counterclockwise':
