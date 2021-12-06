@@ -44,10 +44,40 @@ def record_temperature_data():
 
     #insert command
     insert_command = "INSERT INTO `temperature_data` (`timestamp`, `temperature`) VALUES (%s, %s);"
-
+    temperature = read_temp()
     #create set of data
     time = datetime.now()
-    data = (time, read_temp())
+    data = (time, temperature)
+
+    #cursor object to execute database commands
+    cursor = database.cursor()
+    
+    #send data to database
+    cursor.execute(insert_command,data)
+    database.commit()
+
+    #close connection
+    cursor.close()
+    database.close()
+
+    return temperature
+
+
+#Function to post to the action log database
+def record_action(action):
+    #load credentials and connect to the database
+    credentials = json.load(open("credentials.json", "r"))
+
+    database = mysql.connector.connect(
+        host=credentials["host"],
+        user=credentials["user"],
+        passwd=credentials["password"],
+        database=credentials["database"]
+    )
+
+    #insert command
+    insert_command = "INSERT INTO `action_log` (`timestamp`, `action`) VALUES (%s, %s);"
+    data = (datetime.now(), action)
 
     #cursor object to execute database commands
     cursor = database.cursor()
