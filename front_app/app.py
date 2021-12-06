@@ -4,11 +4,11 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 Bootstrap(app)
 
-@app.route('/')
+@app.route('/livetemp')
 def index():
     return render_template('index.html')
 
-@app.route('/livetemp')
+@app.route('/')
 def liveTemp():
     return render_template('liveTemp.html')
 
