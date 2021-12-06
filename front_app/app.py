@@ -8,5 +8,9 @@ Bootstrap(app)
 def index():
     return render_template('index.html')
 
+@app.route('/livetemp')
+def liveTemp():
+    return render_template('liveTemp.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
