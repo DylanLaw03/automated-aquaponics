@@ -16,6 +16,9 @@
     padding: 10px;
     font-family: "Atkinson Hyperlegible", sans-serif;
     font-size: large;
+    border-width: thick;
+    border-color: lightgrey;
+    border-style: solid;
 }
 
 .nav-button:hover {
@@ -42,7 +45,6 @@ iframe{
     width: 96vw;
     border-radius: 30px;
     padding: 0 1% 1%;
-
 }
 
 h1{
