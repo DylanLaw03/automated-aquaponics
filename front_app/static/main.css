@@ -11,6 +11,10 @@
     margin-bottom: 10px;
     background-color: rgb(109, 141, 255);
     color: black;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: "Atkinson Hyperlegible";
+    font-size: large;
 }
 
 .nav-button:hover {
@@ -23,4 +27,8 @@
 
 .initial-state-screen {
     height: 660px;
+}
+
+body{
+    background: #282828;
 }
