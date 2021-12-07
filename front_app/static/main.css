@@ -2,15 +2,23 @@
 
 .nav-bar {
     text-align: center;
+    border-radius: 20px;
+    background-color: #181818;
+    width: 90%;
+    margin: 10px auto auto;
 }
 
 .nav-button {
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    background-color: rgb(109, 141, 255);
+    margin: 10px 25px 10px;
+    background-color: #386da9;
     color: black;
+    border-radius: 12px;
+    padding: 10px;
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-size: large;
+    border-width: thick;
+    border-color: lightgrey;
+    border-style: solid;
 }
 
 .nav-button:hover {
@@ -23,4 +31,27 @@
 
 .initial-state-screen {
     height: 660px;
+}
+
+body{
+    background: #282828;
+}
+
+iframe{
+    margin: auto;
+    border: none;
+    scrolling: no;
+    height: 90vh;
+    width: 96vw;
+    border-radius: 30px;
+    padding: 0 1% 1%;
+}
+
+h1{
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    margin: auto;
+    padding: 1%;
+    text-align: center;
+    color: white;
+    font-size: xxx-large;
 }
