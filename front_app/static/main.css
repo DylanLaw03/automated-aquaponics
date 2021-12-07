@@ -2,10 +2,14 @@
 
 .nav-bar {
     text-align: center;
+    border-radius: 20px;
+    background-color: #181818;
+    width: 90%;
+    margin: 10px auto auto;
 }
 
 .nav-button {
-    margin: 5px 25px 10px;
+    margin: 10px 25px 10px;
     background-color: #386da9;
     color: black;
     border-radius: 12px;
@@ -31,11 +35,14 @@ body{
 }
 
 iframe{
-    padding: 0;
-    margin: 0;
+    margin: auto;
     border: none;
     scrolling: no;
-    height: 94vh;
+    height: 90vh;
+    width: 96vw;
+    border-radius: 30px;
+    padding: 0 1% 1%;
+
 }
 
 h1{
