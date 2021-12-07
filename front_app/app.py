@@ -1,3 +1,8 @@
+"""
+Aquaponics Flask App
+Dylan Lawrence
+Evan Hinchliffe
+"""
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 
@@ -9,9 +14,11 @@ Bootstrap(app)
 def liveTemp():
     return render_template('index.html')
 
+
 @app.route('/history')
 def history():
-    return render_template('history.html', database = "Test")
+    return render_template('history.html', database="Test")
+
 
 @app.route('/status')
 def status():
@@ -19,5 +26,4 @@ def status():
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
-
+    app.run(debug=True)
