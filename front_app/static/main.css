@@ -5,15 +5,12 @@
 }
 
 .nav-button {
-    margin-left: 25px;
-    margin-right: 25px;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin: 5px 25px 10px;
     background-color: #386da9;
     color: black;
     border-radius: 12px;
     padding: 10px;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Atkinson Hyperlegible", sans-serif;
     font-size: large;
 }
 
@@ -31,4 +28,21 @@
 
 body{
     background: #282828;
+}
+
+iframe{
+    padding: 0;
+    margin: 0;
+    border: none;
+    scrolling: no;
+    height: 94vh;
+}
+
+h1{
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    margin: auto;
+    padding: 1%;
+    text-align: center;
+    color: white;
+    font-size: xxx-large;
 }
