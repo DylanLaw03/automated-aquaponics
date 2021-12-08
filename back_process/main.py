@@ -41,6 +41,11 @@ FEEDER_INTERVAL = timedelta(minutes = 1)
 PUMP_INTERVAL = timedelta(minutes = 2)
 PUMP_TIME_ON = timedelta(minutes= 1)
 #start never ending while loop
+GPIO.output(PUMP_PIN, GPIO.LOW)
+time.wait(60)
+GPIO.output(PUMP_PIN, GPIO.HIGH)
+GPIO.cleanup()
+"""
 while True:
     if datetime.now() >= temperature_time + TEMPERATURE_INTERVAL:
         print("Recording Temperature")
@@ -73,3 +78,4 @@ while True:
         pump_time = datetime.now()
         pump_on = False
         record_action("pump-off")
+    """
