@@ -4,20 +4,22 @@ import glob
 import time
 import json
 import mysql.connector
- 
+
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
- 
+
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
- 
+
+
 def read_temp_raw():
     f = open(device_file, 'r')
     lines = f.readlines()
     f.close()
     return lines
- 
+
+
 def read_temp():
     lines = read_temp_raw()
     while lines[0].strip()[-3:] != 'YES':
@@ -25,14 +27,14 @@ def read_temp():
         lines = read_temp_raw()
     equals_pos = lines[1].find('t=')
     if equals_pos != -1:
-        temp_string = lines[1][equals_pos+2:]
+        temp_string = lines[1][equals_pos + 2:]
         temp_c = float(temp_string) / 1000.0
         temp_f = temp_c * 9.0 / 5.0 + 32.0
         return temp_f
 
 
 def record_temperature_data():
-    #load credentials and connect to the database
+    """load credentials and connect to the database """
     credentials = json.load(open("credentials.json", "r"))
 
     database = mysql.connector.connect(
@@ -42,30 +44,30 @@ def record_temperature_data():
         database=credentials["database"]
     )
 
-    #insert command
+    # insert command
     insert_command = "INSERT INTO `temperature_data` (`timestamp`, `temperature`) VALUES (%s, %s);"
     temperature = read_temp()
-    #create set of data
+    # create set of data
     time = datetime.now()
     data = (time, temperature)
 
-    #cursor object to execute database commands
+    # cursor object to execute database commands
     cursor = database.cursor()
-    
-    #send data to database
-    cursor.execute(insert_command,data)
+
+    # send data to database
+    cursor.execute(insert_command, data)
     database.commit()
 
-    #close connection
+    # close connection
     cursor.close()
     database.close()
 
     return temperature
 
 
-#Function to post to the action log database
+# Function to post to the action log database
 def record_action(action):
-    #load credentials and connect to the database
+    """load credentials and connect to the database"""
     credentials = json.load(open("credentials.json", "r"))
 
     database = mysql.connector.connect(
@@ -75,17 +77,17 @@ def record_action(action):
         database=credentials["database"]
     )
 
-    #insert command
+    # insert command
     insert_command = "INSERT INTO `action_log` (`timestamp`, `action`) VALUES (%s, %s);"
     data = (datetime.now(), action)
 
-    #cursor object to execute database commands
+    # cursor object to execute database commands
     cursor = database.cursor()
-    
-    #send data to database
-    cursor.execute(insert_command,data)
+
+    # send data to database
+    cursor.execute(insert_command, data)
     database.commit()
 
-    #close connection
+    # close connection
     cursor.close()
     database.close()

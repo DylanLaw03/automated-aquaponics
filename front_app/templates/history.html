@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/main.css">
+    <title>Database</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -13,5 +15,37 @@
     </div>
 
     <h1>Database {{database}}</h1>
+<div class="jumbotron text-center" style="margin-bottom:0; background-color:#c8d6e4;">
+      <h1>Data Visualization using Chart.js</h1>
+      <p>Temperature sensor data from {{name}}'s Raspberry Pi</p>
+    </div>
+
+    <!-- Canvas target for JavaScript chart to display -->
+    <canvas class="mt-10" id="temp_chart"></canvas>
+
+
+    <main >
+        <table >
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Timestamp</th>
+                    <th>Value (&deg;F)</th>
+                </tr>
+            </thead>
+            <tbody id="temp_tbody"></tbody>
+        </table>
+    </main>
+
+    <!-- Footer (styled with Bootstrap). {{name}} from Flask app -->
+    <div class="jumbotron text-left" style="margin-bottom:0">
+      <p>&copy; {{name}} [CS 121]</p>
+    </div>
+
+    <!-- Include jQuery, Chart.js and local JavaScript chart file -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="/static/temperature_chart.js"></script>
+
 </body>
 </html>

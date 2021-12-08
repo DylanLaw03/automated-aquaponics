@@ -5,7 +5,8 @@
     border-radius: 20px;
     background-color: #181818;
     width: 90%;
-    margin: 10px auto auto;
+    margin: 1% auto;
+
 }
 
 .nav-button {
@@ -13,7 +14,7 @@
     background-color: #386da9;
     color: black;
     border-radius: 12px;
-    padding: 10px;
+    padding: 0.5%;
     font-family: "Atkinson Hyperlegible", sans-serif;
     font-size: large;
     border-width: thick;
@@ -30,21 +31,24 @@
 }
 
 .initial-state-screen {
-    height: 660px;
+    height: auto;
 }
 
 body{
     background: #282828;
+    height: 80vh;
 }
 
 iframe{
     margin: auto;
     border: none;
-    scrolling: no;
-    height: 87vh;
-    width: 96vw;
+    height: 80vh;
+    width: 98vw;
     border-radius: 15px;
-    padding: 0 1% 1%;
+    padding: 0 0 0;
+    border: lightgrey;
+    border-width: thick;
+    border-style: solid;
 }
 
 h1{
