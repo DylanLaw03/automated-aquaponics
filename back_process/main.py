@@ -8,12 +8,10 @@ Created by Dylan Lawrence on 11/30/2021
 
 # import dependencies
 import RPi.GPIO as GPIO
-from datetime import date, timedelta, datetime
-from time import time
+from datetime import timedelta, datetime
 from helper_functions import record_temperature_data, read_temp, record_action
 from stepper_functions import rotate_motor
 from ISStreamer.Streamer import Streamer
-import time
 
 # Record starting time and assign it to the variables that will be used to check if it is time to take a reading
 temperature_time = datetime.now()
@@ -39,55 +37,50 @@ FEEDER_INTERVAL = timedelta(minutes=1)
 PUMP_INTERVAL = timedelta(minutes=2)
 PUMP_TIME_ON = timedelta(minutes=1)
 
-<<<<<<< HEAD
 
 #datetime constants for interval between reads
-TEMPERATURE_INTERVAL = timedelta(seconds = 10)
-FEEDER_INTERVAL = timedelta(minutes = 1)
-PUMP_INTERVAL = timedelta(minutes = 2)
-PUMP_TIME_ON = timedelta(minutes= 1)
+TEMPERATURE_INTERVAL = timedelta(seconds = 10) 
+FEEDER_INTERVAL = timedelta(seconds = 30)
+PUMP_INTERVAL = timedelta(seconds = 30)
+PUMP_TIME_ON = timedelta(seconds = 70)
 #start never ending while loop
-GPIO.output(PUMP_PIN, GPIO.LOW)
-time.wait(60)
-GPIO.output(PUMP_PIN, GPIO.HIGH)
-GPIO.cleanup()
-"""
-=======
-# start never ending while loop
->>>>>>> 8eccf9a5eaab815801626f2f16afc052c7b1d138
-while True:
-    if datetime.now() >= temperature_time + TEMPERATURE_INTERVAL:
-        print("Recording Temperature")
-        temperature = round(record_temperature_data(), 2)
-        temperature_time = datetime.now()
-        streamer.log("temperature", temperature)
-        streamer.log("last_temp_time", str(datetime.now()))
-        streamer.flush()
-        record_action("temperature-read")
+try:
+    while True:
+        if datetime.now() >= temperature_time + TEMPERATURE_INTERVAL:
+            print("Recording Temperature")
+            temperature = round(record_temperature_data(), 2)
+            temperature_time = datetime.now()
+            streamer.log("temperature", temperature)
+            streamer.log("last_temp_time", str(datetime.now())[5:16])
+            streamer.flush()
+            record_action("temperature-read")
 
-    # Feed fish
-    if datetime.now() >= feeder_time + FEEDER_INTERVAL:
-        print("Feeding Fish")
-        rotate_motor(1)
-        feeder_time = datetime.now()
-        record_action("fish-fed")
-        streamer.log("last_fed_time", str(datetime.now()))
-        streamer.flush()
+        # Feed fish
+        if datetime.now() >= feeder_time + FEEDER_INTERVAL:
+            print("Feeding Fish")
+            rotate_motor(1)
+            feeder_time = datetime.now() + timedelta(hours = 4)
+            record_action("fish-fed")
+            streamer.log("last_fed_time", str(datetime.now())[5:16])
+            streamer.flush()
 
-    if datetime.now() >= pump_time + PUMP_INTERVAL and pump_on == False:
-        print("Pump On")
-        GPIO.output(PUMP_PIN, GPIO.LOW)
-        pump_time = datetime.now()
-        pump_on = True
-        record_action("pump-on")
+        if datetime.now() >= pump_time + PUMP_INTERVAL and pump_on == False:
+            print("Pump On")
+            GPIO.output(PUMP_PIN, GPIO.LOW)
+            pump_time = datetime.now()
+            pump_on = True
+            streamer.log("pump_status", "Pump on: " + str(datetime.now())[5:16])
+            record_action("pump-on")
+            streamer.flush()
 
-    if datetime.now() >= pump_time + PUMP_TIME_ON and pump_on == True:
-        print("Pump Off")
-        GPIO.output(PUMP_PIN, GPIO.HIGH)
-        pump_time = datetime.now()
-        pump_on = False
-        record_action("pump-off")
-<<<<<<< HEAD
-    """
-=======
->>>>>>> 8eccf9a5eaab815801626f2f16afc052c7b1d138
+        if datetime.now() >= pump_time + PUMP_TIME_ON and pump_on == True:
+            print("Pump Off")
+            GPIO.output(PUMP_PIN, GPIO.HIGH)
+            pump_time = datetime.now()
+            pump_on = False
+            streamer.log("pump_status", "Pump off: " + str(datetime.now())[5:16])
+            record_action("pump-off")
+            streamer.flush()
+except:
+    #reset gpio pins if there's an error
+    GPIO.cleanup()

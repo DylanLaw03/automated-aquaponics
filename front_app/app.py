@@ -4,12 +4,10 @@ Dylan Lawrence
 Evan Hinchliffe
 """
 from flask import Flask, render_template
-from flask_bootstrap import Bootstrap
 import mysql.connector
 import json
 
 app = Flask(__name__)
-Bootstrap(app)
 
 
 @app.route('/')
@@ -17,7 +15,7 @@ def liveTemp():
     return render_template('index.html')
 
 
-credentials = json.load(open("../back_process/credentials.json", "r"))
+credentials = json.load(open("code/front_app/credentials.json", "r"))
 
 
 @app.route('/history')
@@ -32,11 +30,18 @@ def history():
     query = 'SELECT * FROM temperature_data;'
 
     cursor.execute(query)
-    data = cursor.fetchall()
+
+    action = cursor 
+    action_table = ""
+
+    for row in cursor:
+        action_table += "<tr>"
+        for observation in row:
+            action_table += "<td>" + str(observation) + "</td>"
 
     cursor.close()
     database.close()
-    return render_template('history.html', database="aquaponics", data = data,)
+    return render_template('history.html', action = action)
 
 
 @app.route('/status')
